@@ -1,0 +1,14 @@
+Arquivo de Entradas:
+
+W (capacidade da mochla)
+n (número de itens)
+Peso Valor
+
+Arquivo de Saída:
+
+Peso Valor
+...
+Peso Valor
+somatório dos pesos dos itens escolhidos
+somatório dos valores dos itens
+
