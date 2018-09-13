@@ -13,13 +13,13 @@ typedef struct item{
 
 
 //Função que le o arquivo nos padroes especificados
-// Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um pontiro para lista de itens, e uma string com nome do arquivo
+// Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado 
 
 void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquivo){	
 
 	FILE *PonteiroDeArquivo;
-	int leituraDeCaracteresDoArquivo;
 	int i = 0;
+	int auxiliar;
 
 	//Abri arquivo para leitura
 
@@ -29,71 +29,36 @@ void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquiv
 	
 	if(PonteiroDeArquivo == NULL){
 
-		printf("ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO");
+		printf("ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO\n");
 		return;
 	}
 
-	//Ler Capacidade da Mochila
+	//Leio mochila
 
-	/**********TESTE****************/
-	printf("%d", leituraDeCaracteresDoArquivo-48);
+	fscanf( PonteiroDeArquivo, "%d", CapacidadeDaMochila);
 
-	leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
+	//Leio numero de itens
 
-	//Como a leitura e feita como int, porem representando um caracter da tabela ASCII ao subtrair 48 faço a converção de char para int
+	fscanf( PonteiroDeArquivo, "%d", &auxiliar);
 
-	*CapacidadeDaMochila = leituraDeCaracteresDoArquivo-48;
+	//Crio vetor do tipo Itens
 
-	//Remover new lines e caracteres de espaço ate encontar a quantidade de itens
+	listaDeItens = (ITEM *) malloc(sizeof(ITEM) * auxiliar);
 
-	leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
-	while(leituraDeCaracteresDoArquivo==' ' || leituraDeCaracteresDoArquivo=='\n')
-		leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
+	//add todos os itens ao vetor
 
-	//Crio vetor do tipo itens
+	while( fscanf( PonteiroDeArquivo, "%d %d", &listaDeItens[i].peso, &listaDeItens[i].valor) != EOF ){		
 
-	/**********TESTE****************/
-	printf("%d", leituraDeCaracteresDoArquivo-48);
+			//Mostra leitura
 
-	listaDeItens = (ITEM *) malloc(sizeof(ITEM) * (leituraDeCaracteresDoArquivo-48));
+			//printf("%d %d\n", listaDeItens[i].peso, listaDeItens[i].valor);
 
-	//Le ate o final do arquivo
+			//incremento o indice pra add proximo item
 
-	leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
-	while(leituraDeCaracteresDoArquivo != EOF){
-
-		//Se nao for espaço ou new line
-
-		if(!(leituraDeCaracteresDoArquivo==' ' || leituraDeCaracteresDoArquivo=='\n')){
-
-			//Leio peso do Item
-
-			/**********TESTE****************/
-			printf("%d", leituraDeCaracteresDoArquivo-48);
-
-			listaDeItens[i].peso = leituraDeCaracteresDoArquivo-48;
-			
-			//Remover new lines e caracteres de espaço ate encontar o valor
-
-			leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
-			while(leituraDeCaracteresDoArquivo==' ' || leituraDeCaracteresDoArquivo=='\n')
-				leituraDeCaracteresDoArquivo = fgetch(PonteiroDeArquivo);
-
-			//Leio valor do Item
-
-			/**********TESTE****************/
-			printf(" %d\n", leituraDeCaracteresDoArquivo-48);
-
-			listaDeItens[i].valor = leituraDeCaracteresDoArquivo-48;
-
-			//Add o proximo objeto
-			
 			i++;
 
-		}//end if
-
 	}//end while EOF
-	
+
 }//end lerArquivo
 
 //Função Principal
@@ -103,7 +68,11 @@ int main(){
 	int CapacidadeDaMochila;
 	ITEM * listaDeItens;
 
-	lerArquivo(&CapacidadeDaMochila,listaDeItens,"Documen!to sem título.txt\0");
+	lerArquivo(&CapacidadeDaMochila,listaDeItens,"Documento sem título.txt\0");
+
+	//teste de leitura da capacidade da mochila
+
+	//printf("Capacidade da Mochila: %d\n", CapacidadeDaMochila);
 
 	return 0;
 
