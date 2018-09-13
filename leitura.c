@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 //Função que le o arquivo nos padroes especificados
-// Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado 
+// Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado no endereço passado.
 
 void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquivo){	
 
@@ -38,9 +38,13 @@ void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquiv
 
 	while( fscanf( PonteiroDeArquivo, "%d %d", &listaDeItens[i].peso, &listaDeItens[i].valor) != EOF ){		
 
+			//Add valor por peso
+
+			listaDeItens[i].valorPorPeso = (double)listaDeItens[i].valor/listaDeItens[i].peso; 
+
 			//Mostra leitura
 
-			printf("%d %d\n", listaDeItens[i].peso, listaDeItens[i].valor);
+			printf("%d %d %lf\n", listaDeItens[i].peso, listaDeItens[i].valor, listaDeItens[i].valorPorPeso);
 
 			//incremento o indice pra add proximo item
 

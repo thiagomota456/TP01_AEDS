@@ -10,11 +10,11 @@ int main(){
 	int CapacidadeDaMochila;
 	ITEM * listaDeItens;
 
+	//leietura do arquivo
+
 	lerArquivo(&CapacidadeDaMochila,listaDeItens,"Documento sem título.txt\0");
 
-	//teste de leitura da capacidade da mochila
-
-	printf("Capacidade da Mochila: %d\n", CapacidadeDaMochila);
+	
 
 	return 0;
 
