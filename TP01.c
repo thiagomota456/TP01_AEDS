@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "tipos.h"
-#include "leitura.h"
+#include "tipos.c"
+#include "leitura.c"
 
 //Função Principal
 
