@@ -3,7 +3,20 @@
 #include "tipos.c"
 #include "leitura.c"
 
+//Printa lista
+
+void printaLista(ITEM *lista, int tamanho){
+
+	int i;
+
+	for(i = 0; i < tamanho; i++){
+		printf("%d %d %.2lf\n", lista[i].peso, lista[i].valor, lista[i].valorPorPeso);
+	}
+
+}//end printaLista
+
 //Ordeno os elementos em ordem crecente  
+//Erro na ora de ordenar, elementos não estão sendo trocados
 
 void ordenaDecrecente(ITEM *lista, int tamanho){
 
@@ -11,7 +24,8 @@ void ordenaDecrecente(ITEM *lista, int tamanho){
 	int i = 0, j = 0;
 	ITEM aux;
 
-
+	printf("inicio: \n");
+	printaLista( lista, tamanho);
 
 	//Para todos os elementos da lista
 
@@ -26,9 +40,8 @@ void ordenaDecrecente(ITEM *lista, int tamanho){
 			//Se encontrei um maior guardo o indice dele
 
 			if(lista[j].valorPorPeso > lista[IndiceDoMaior].valorPorPeso)
-				maior = i;
+				IndiceDoMaior = i;
 		}//end for
-
 
 		//Troco o maior com o item 1
 
@@ -36,11 +49,12 @@ void ordenaDecrecente(ITEM *lista, int tamanho){
 		lista[i] = lista[IndiceDoMaior];
 		lista[IndiceDoMaior] = aux; 
 
-
+		printf("Troca %d\n", i+1);
+		printaLista( lista, tamanho);
+		i++;
 	}//end while(i<tamanho)
-
 	
-}
+}//end ordenaDecrecente
 
 //Função Principal
 
@@ -51,8 +65,11 @@ int main(){
 
 	//leietura do arquivo
 
-	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, listaDeItens, "Documento sem título.txt\0");
-
+	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, "Documento sem título.txt\0");
+	printaLista( listaDeItens, tamanhoDalista);
+	printf("Ordenado: \n");
+	ordenaDecrecente(listaDeItens, tamanhoDalista);
+	printaLista( listaDeItens, tamanhoDalista);
 
 	return 0;
 

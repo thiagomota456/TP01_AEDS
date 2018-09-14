@@ -4,11 +4,11 @@
 //Função que le o arquivo nos padroes especificados
 // Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado no endereço passado.
 
-void lerArquivo(int *CapacidadeDaMochila, int *auxiliar, ITEM *listaDeItens, char *nomeDoArquivo){	
+void lerArquivo(int *CapacidadeDaMochila, int *tamanhoDalista, ITEM **listaDeItens, char *nomeDoArquivo){	
 
 	FILE *PonteiroDeArquivo;
 	int i = 0;
-	//int auxiliar;
+	int auxiliar;
 
 	//Abri arquivo para leitura
 
@@ -28,23 +28,28 @@ void lerArquivo(int *CapacidadeDaMochila, int *auxiliar, ITEM *listaDeItens, cha
 
 	//Leio numero de itens
 
-	fscanf( PonteiroDeArquivo, "%d", auxiliar);
+	fscanf( PonteiroDeArquivo, "%d", &auxiliar);
+	*tamanhoDalista = auxiliar;
 
 	//Crio vetor do tipo Itens
 
-	listaDeItens = (ITEM *) malloc(sizeof(ITEM) * (*auxiliar));
+	*listaDeItens = (ITEM *) malloc(sizeof(ITEM) * auxiliar);
 
 	//add todos os itens ao vetor
 
-	while( fscanf( PonteiroDeArquivo, "%d %d", &listaDeItens[i].peso, &listaDeItens[i].valor) != EOF ){		
+	while( fscanf(PonteiroDeArquivo, "%d %d", &(*listaDeItens)[i].peso, &(*listaDeItens)[i].valor) != EOF){
 
-			//Add valor por peso
-
-			listaDeItens[i].valorPorPeso = (double)listaDeItens[i].valor/listaDeItens[i].peso; 
-
-			//Mostra leitura
-
-			printf("%d %d %lf\n", listaDeItens[i].peso, listaDeItens[i].valor, listaDeItens[i].valorPorPeso);
+			/***********************************************Testes******************************************************
+			* Add valor por peso
+			*
+			*(*listaDeItens)[i].valorPorPeso = (double)(*listaDeItens)[i].valor /(*listaDeItens)[i].peso; 
+			*
+			* Mostra leitura
+			*
+			*printf("%d %d %.2lf\n", (*listaDeItens)[i].peso, (*listaDeItens)[i].valor, (*listaDeItens)[i].valorPorPeso);
+			*
+			*
+			**************************************************************************************************************/
 
 			//incremento o indice pra add proximo item
 
