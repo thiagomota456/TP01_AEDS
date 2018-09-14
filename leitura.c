@@ -4,11 +4,11 @@
 //Função que le o arquivo nos padroes especificados
 // Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado no endereço passado.
 
-void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquivo){	
+void lerArquivo(int *CapacidadeDaMochila, int *auxiliar, ITEM *listaDeItens, char *nomeDoArquivo){	
 
 	FILE *PonteiroDeArquivo;
 	int i = 0;
-	int auxiliar;
+	//int auxiliar;
 
 	//Abri arquivo para leitura
 
@@ -28,11 +28,11 @@ void lerArquivo(int *CapacidadeDaMochila, ITEM *listaDeItens, char *nomeDoArquiv
 
 	//Leio numero de itens
 
-	fscanf( PonteiroDeArquivo, "%d", &auxiliar);
+	fscanf( PonteiroDeArquivo, "%d", auxiliar);
 
 	//Crio vetor do tipo Itens
 
-	listaDeItens = (ITEM *) malloc(sizeof(ITEM) * auxiliar);
+	listaDeItens = (ITEM *) malloc(sizeof(ITEM) * (*auxiliar));
 
 	//add todos os itens ao vetor
 
