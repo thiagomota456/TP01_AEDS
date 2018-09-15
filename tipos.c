@@ -15,25 +15,11 @@ typedef struct item{
 
 	int valor;
 
+	//0 esta fora da mochila, qualquer outro número dentro da mochila
+	int naMochila;
+
 	//Valor dividido por peso
 
 	double valorPorPeso; 
 
 }ITEM;
-
-/*
-
-Pretendo criar uma estrutura pra mochila
-
-typedef struct mochila{
-
-	//Vetor de itens na mochila
-
-	int itensinclusos[MAX][3];	
-	
-	//itens add
-
-	int itensAdd
-
-}MOCHILA;
-*/

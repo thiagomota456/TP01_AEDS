@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"tipos.c"
 
 //Função que le o arquivo nos padroes especificados
 //Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado no endereço passado.
@@ -44,10 +43,6 @@ void lerArquivo(int *CapacidadeDaMochila, int *tamanhoDalista, ITEM **listaDeIte
 			//Add valor por peso
 			
 			(*listaDeItens)[i].valorPorPeso = (double)(*listaDeItens)[i].valor /(*listaDeItens)[i].peso;
-
-			//indico que não está na mochila
-
-			(*listaDeItens)[i].naMochila = 0;
 
 			/***********************************************Testes*******************************************************
 			* Mostra leitura
