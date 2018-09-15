@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 //Função que le o arquivo nos padroes especificados
 //Passo como parametro respectivamente o endereço de uma variavel int que representa a capacidade da mochila, um ponteiro para lista de itens, e uma string com nome do arquivo não ha retorno. Vetor de itens é gerado e valor em CapacidadeDaMochila é gravado no endereço passado.
@@ -88,12 +89,70 @@ void printaItensNaMochila(ITEM *lista, int tamanho){
 
 	for(i = 0; i < tamanho; i++){
 
-		//Se esta na mochila 
+		//Se esta na mochila
+ 
 		if(lista[i].naMochila != 0)
 
 			//Printo item
 
 			printf("%d %d %.2lf\n", lista[i].peso, lista[i].valor, lista[i].valorPorPeso);
-	}
+
+	}//end for
 
 }//end printaItensNaMochila
+
+//Cria um arquivo de saída
+
+void saidaNoArquivo( ITEM *lista, int tamanhoDalista, char *nomeDoArquivoLido){
+	
+	FILE *PonteiroDeArquivo;
+	int somatorioDosPesosDosItens = 0;
+	int somatorioDosValoresDosItens = 0;
+	int i;
+	int j = 0;
+
+	//Crio string para abrigar nome de arquivo de saida
+
+	char arquivoDeSaida[strlen(nomeDoArquivoLido) + 12];
+	memcpy( arquivoDeSaida, "Resposta : \0", 12);
+
+	//Gero nome do arquivo de sáida sendo Resposta : nomeDoArquivoLido
+
+	strcat( arquivoDeSaida, nomeDoArquivoLido);
+
+	//Abri arquivo para escrita, caso não exista, (o que deve acontecer), Não permite leitura
+
+	PonteiroDeArquivo = fopen( arquivoDeSaida, "w");
+		
+	//Para cada item escolhido para a solução, o número do item, seu peso e seu valor (uma linha por item)
+	//Interpretei o "o número do item" com a posição dele na lsita, mas não tenho certeza se compeendi bem o que ela queria com essa frase
+	
+	//Percorro toda minha lista
+
+	for(i = 0; i < tamanhoDalista; i++){
+
+		//Se esta na mochila
+ 
+		if(lista[i].naMochila != 0){
+
+			//Printo item
+
+			fprintf( PonteiroDeArquivo, "%3d° %3d %3d\n", j+1,lista[i].peso, lista[i].valor);
+
+			somatorioDosPesosDosItens += lista[i].peso;
+			somatorioDosValoresDosItens += lista[i].valor;
+
+		}//end if
+	
+			j++;
+
+	}//end for
+
+	fprintf( PonteiroDeArquivo, "%3d\n", somatorioDosPesosDosItens);
+	fprintf( PonteiroDeArquivo, "%3d\n", somatorioDosValoresDosItens);
+
+}//end saidaNoArquivo
+
+
+
+

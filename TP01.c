@@ -28,6 +28,7 @@ int main(){
 
 	printaItensNaMochila( listaDeItens, tamanhoDalista);
 
+	saidaNoArquivo( listaDeItens, tamanhoDalista, "Documento sem título.txt\0");
 	
 
 	return 0;
