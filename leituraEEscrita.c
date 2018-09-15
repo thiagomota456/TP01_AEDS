@@ -44,6 +44,10 @@ void lerArquivo(int *CapacidadeDaMochila, int *tamanhoDalista, ITEM **listaDeIte
 			
 			(*listaDeItens)[i].valorPorPeso = (double)(*listaDeItens)[i].valor /(*listaDeItens)[i].peso;
 
+			//Marca item como forra da mochila
+
+			(*listaDeItens)[i].naMochila = 0;
+
 			/***********************************************Testes*******************************************************
 			* Mostra leitura
 			*
@@ -73,3 +77,23 @@ void printaLista(ITEM *lista, int tamanho){
 
 }//end printaLista
 
+//Printar Mochila
+//Recebe como parametro um ponteiro pro tipo item , e o tamanho do vetor para o qual o ponteiro deve apontar. Printa no terminal a lista
+
+void printaItensNaMochila(ITEM *lista, int tamanho){
+
+	int i;
+
+	//Percorro toda minha lista
+
+	for(i = 0; i < tamanho; i++){
+
+		//Se esta na mochila 
+		if(lista[i].naMochila != 0)
+
+			//Printo item
+
+			printf("%d %d %.2lf\n", lista[i].peso, lista[i].valor, lista[i].valorPorPeso);
+	}
+
+}//end printaItensNaMochila

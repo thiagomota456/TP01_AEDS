@@ -14,10 +14,21 @@ int main(){
 	//leietura do arquivo
 
 	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, "Documento sem título.txt\0");
+
+	//Printo lista gerada a partir do arquivo
+
 	printaLista( listaDeItens, tamanhoDalista);
-	printf("Ordenado: \n");
-	ordenaDecrecente(listaDeItens, tamanhoDalista);
-	printaLista( listaDeItens, tamanhoDalista);
+
+	//Add itens a mochila
+
+	printf("Mochila: \n");
+	addItensAMochila(listaDeItens, CapacidadeDaMochila, tamanhoDalista);
+
+	//Printo itens na mochila
+
+	printaItensNaMochila( listaDeItens, tamanhoDalista);
+
+	
 
 	return 0;
 

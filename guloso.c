@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-
 //Ordeno os elementos em ordem crecente  
 //Recebo um pontiro do tipo lista e um int tamanho que dee ser igual ao tamanho do vetor o qual o ponteiro deve apontar. Ordeno vetor em ordem decressente sendo o tem de comparação o ValorPorPeso
 
@@ -40,3 +39,38 @@ void ordenaDecrecente(ITEM *lista, int tamanho){
 	
 }//end ordenaDecrecente
 
+//Add itens a mochila
+//Recebo a lista de Itens como um ponteiro que aopnta pra um vetor do tipo ITEM, a capacidade da mochila, e o tamanho da lista de itens
+
+void addItensAMochila(ITEM *lista, int capacidade, int tamanhoDaLista){
+
+	int i;
+
+	//Copio tamanho pra uma variavel tamanho restante que vai verificar se há espaço pra add itens
+
+	int tamanhoRestante = capacidade;
+
+	//Ordeno lista
+
+	ordenaDecrecente( lista, tamanhoDaLista);
+
+	//Para todos os itens da mochila
+
+	for(i = 0; i < tamanhoDaLista; i++){
+
+		//Se cabe na mochila
+
+		if( (tamanhoRestante-lista[i].peso) >= 0){
+
+			//Subtraio peso da capacidade da mochila
+
+			tamanhoRestante -= lista[i].peso;
+
+			//Marco o item como dentro da mochila
+			lista[i].naMochila = 1;
+
+		}
+
+	}//end for
+	
+}//end addItensAMochila
