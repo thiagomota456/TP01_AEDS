@@ -96,7 +96,7 @@ void addMochila(ITEM *lista, int * mochila, int tamanho){
 
 **************************/
 
-//Copio segunda mochila pra 1 mochila
+//Copio segunda mochila pra primeira mochila
 //Recebo vetor de origem int, vtor de destino int e tamanho deles, respectivamente
 
 void copioMochila(int *mochilaDeDestino, int *mochilaDeOrigem, int tamanho){
@@ -115,32 +115,147 @@ void copioMochila(int *mochilaDeDestino, int *mochilaDeOrigem, int tamanho){
 
 }//end copioMochila
 
+/************TESTE********************
+	ITEM lista[5];
+
+	lista[0].naMochila = 0;
+	lista[1].naMochila = 1;
+	lista[2].naMochila = 0;
+	lista[3].naMochila = 1;
+	lista[4].naMochila = 0;
+
+	lista[1].valor = 10;
+	lista[3].valor = 389;
+
+	printf("%d\n", somaDeValores(lista, 5));
+
+********************************/
+
+int somaDeValores( ITEM * lista, int tamanho){
+
+	int i, aux = 0;
+
+	//Para todos os elementos da lista
+
+	for(i = 0; i < tamanho; i++){
+
+		//Se o item estiver na mochila
+
+		if(lista[i].naMochila != 0)
+			aux += lista[i].valor;
+
+	}//end for
+
+	return aux;
+
+}//end somaDeValores
+
+int somaDePesos( ITEM * lista, int tamanho){
+
+	int i, aux = 0;
+
+	//Para todos os elementos da lista
+
+	for(i = 0; i < tamanho; i++){
+
+		//Se o item estiver na mochila
+
+		if(lista[i].naMochila != 0)
+			aux += lista[i].peso;
+
+	}//end for
+
+	return aux;
+
+}//end somaDeValores
+
+void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int quantidadeDeItens){
+
+	int i;
+
+	//Ao definir esses valores iniciais e como se eu iniciasse a comparação com a combinação todos os item fora da cochila, ou 000..000
+
+	int somaDeValoresAtuais = 0, somaDeValoresGuardados = 0, somaDePesosAtuais = 0, somaDePesosGuardados = 0;
+	int combinacaoAtual[quantidadeDeItens], maiorCombinacao[quantidadeDeItens];
+
+	//Zera todo o vetor
+
+	memset(combinacaoAtual, 0, quantidadeDeItens * sizeof(int));
+	memset(maiorCombinacao, 0, quantidadeDeItens * sizeof(int));
+
+	for(i = 1; i < quantidadeDeItens; i++){
+
+		//Converto 1 em base 10 pra binario
+
+		addParaBinario(i, combinacaoAtual, quantidadeDeItens);
+
+		//adiciono combinação a mochila
+
+		addMochila( lista, combinacaoAtual, quantidadeDeItens);
+
+		//Soma de valores da combinação selecionada e add a somaDeValoresAtuais
+
+		somaDeValoresAtuais =  somaDeValores( lista, quantidadeDeItens);
+
+		//Soma de peso da atual combinação e add a somaDePesosAtuais
+
+		somaDePesosAtuais = somaDePesos( lista, quantidadeDeItens);
+
+		//Testa se a combinação cabe na mochila
+
+		if(capacidadeDaMochila-somaDePesosAtuais >= 0){
+
+			//testa de a soma de valores atuais é maior que a anterior ou se caso iguais, peso menor que anterior
+
+			if( (somaDeValoresAtuais>somaDeValoresGuardados) || ((somaDeValoresAtuais==somaDeValoresGuardados)&&(somaDePesosAtuais<somaDePesosGuardados)) ){
+
+					//Guardo soma de pesos e valores dessa combinação
+
+					somaDeValoresGuardados = somaDeValoresAtuais;
+					somaDePesosGuardados = somaDePesosAtuais;
+
+					//Guardo combinação de itens
+
+					copioMochila( maiorCombinacao, combinacaoAtual, quantidadeDeItens);
+
+			}//end if armazena combinação de itens
+
+		}//end if que testa se combinação de itens cabe na mochila
+		
+	}//end for
+
+	//Add maior e melhor combinação de mocila a lista
+
+	addMochila( lista, maiorCombinacao, quantidadeDeItens);
+	
+}//end tentativaEErro
+
 int main(){
 
-	//int CapacidadeDaMochila, tamanhoDalista;
-	//ITEM * listaDeItens;
+	int CapacidadeDaMochila, tamanhoDalista;
+	ITEM * listaDeItens;
 
 	//leietura do arquivo
 
-	//lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, "Documento sem título.txt\0");
+	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, "Documento sem título.txt\0");
 
 	//Printo lista gerada a partir do arquivo
 
-	//printaLista( listaDeItens, tamanhoDalista);
+	printaLista( listaDeItens, tamanhoDalista);
 
 	//Add itens a mochila
 
-	//printf("Mochila: \n");
+	printf("Mochila: \n");
 
 	//aparentemente so preciso mudar essa linha
 
-	//addItensAMochila_guloso(listaDeItens, CapacidadeDaMochila, tamanhoDalista);
+	addItensAMochila_tentativaEErro(listaDeItens, CapacidadeDaMochila, tamanhoDalista);
 
 	//Printo itens na mochila
 
-	//printaItensNaMochila( listaDeItens, tamanhoDalista);
+	printaItensNaMochila( listaDeItens, tamanhoDalista);
 
-	//saidaNoArquivo( listaDeItens, tamanhoDalista, "Documento sem título.txt\0");
+	saidaNoArquivo( listaDeItens, tamanhoDalista, "Documento sem título.txt\0");
 
 
 	return 0;
