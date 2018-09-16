@@ -22,7 +22,7 @@ int main(){
 	//Add itens a mochila
 
 	printf("Mochila: \n");
-	addItensAMochila(listaDeItens, CapacidadeDaMochila, tamanhoDalista);
+	addItensAMochila_guloso(listaDeItens, CapacidadeDaMochila, tamanhoDalista);
 
 	//Printo itens na mochila
 

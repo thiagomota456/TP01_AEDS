@@ -42,7 +42,7 @@ void ordenaDecrecente(ITEM *lista, int tamanho){
 //Add itens a mochila
 //Recebo a lista de Itens como um ponteiro que aopnta pra um vetor do tipo ITEM, a capacidade da mochila, e o tamanho da lista de itens
 
-void addItensAMochila(ITEM *lista, int capacidade, int tamanhoDaLista){
+void addItensAMochila_guloso(ITEM *lista, int capacidade, int tamanhoDaLista){
 
 	int i;
 
