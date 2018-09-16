@@ -49,14 +49,6 @@ void lerArquivo(int *CapacidadeDaMochila, int *tamanhoDalista, ITEM **listaDeIte
 
 			(*listaDeItens)[i].naMochila = 0;
 
-			/***********************************************Testes*******************************************************
-			* Mostra leitura
-			*
-			*printf("%d %d %.2lf\n", (*listaDeItens)[i].peso, (*listaDeItens)[i].valor, (*listaDeItens)[i].valorPorPeso);
-			*
-			*
-			**************************************************************************************************************/
-
 			//incremento o indice pra add proximo item
 
 			i++;

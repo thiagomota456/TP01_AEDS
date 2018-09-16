@@ -28,7 +28,7 @@ int main(){
 
 	printaItensNaMochila( listaDeItens, tamanhoDalista);
 
-	saidaNoArquivo( listaDeItens, tamanhoDalista, "Documento sem título.txt\0");
+	saidaNoArquivo( listaDeItens, tamanhoDalista, "(gulosa) Documento sem título.txt\0");
 	
 
 	return 0;
