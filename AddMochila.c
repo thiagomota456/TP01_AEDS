@@ -154,7 +154,7 @@ void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int q
 	int i;
 	int numeroDeCombinacoes = elevar(2, quantidadeDeItens);
 
-	printf("numero de combinações: %d", numeroDeCombinacoes);
+	//printf("numero de combinações: %d", numeroDeCombinacoes);
 
 	//Ao definir esses valores iniciais e como se eu iniciasse a comparação com a combinação todos os item fora da cochila, ou 000..000
 
@@ -172,8 +172,9 @@ void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int q
 
 		addParaBinario(i, combinacaoAtual, quantidadeDeItens);
 
-		printf("Conbinação %d:\n", i);
-		printavetorInt(combinacaoAtual, quantidadeDeItens);
+		//Testes pra verificar combinações
+//		printf("Conbinação %d:\n", i);
+//		printavetorInt(combinacaoAtual, quantidadeDeItens);
 
 		//adiciono combinação a mochila
 
