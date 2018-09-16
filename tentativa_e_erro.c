@@ -4,14 +4,21 @@
 #include"AddMochila.c"
 #include "leituraEEscrita.c"
 
-int main(){
+int main(int argc, char *argv[]){
 
 	int CapacidadeDaMochila, tamanhoDalista;
 	ITEM * listaDeItens;
 
+	//Verifica se os parametros na linha de comado foram passados adequadamente
+
+	if(argc != 2){
+		printf("SINATXE: gcc tentativa_e_erro.c File\n");
+		exit(1);
+	}
+
 	//leietura do arquivo
 
-	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, "Documento sem título.txt\0");
+	lerArquivo( &CapacidadeDaMochila, &tamanhoDalista, &listaDeItens, argv[1]);
 
 	//Printo lista gerada a partir do arquivo
 
@@ -29,8 +36,7 @@ int main(){
 
 	printaItensNaMochila( listaDeItens, tamanhoDalista);
 
-	saidaNoArquivo( listaDeItens, tamanhoDalista, "Documento sem título.txt\0");
-
+	saidaNoArquivo( listaDeItens, tamanhoDalista,  argv[1]);
 
 	return 0;
 
