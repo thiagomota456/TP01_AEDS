@@ -142,12 +142,12 @@ void saidaNoArquivo( ITEM *lista, int tamanhoDalista, char *nomeDoArquivoLido){
 			somatorioDosPesosDosItens += lista[i].peso;
 			somatorioDosValoresDosItens += lista[i].valor;
 
-			//Contador de numeros printados
 
 			j++;
 
 		}//end if
 	
+			//j++;
 
 	}//end for
 

@@ -4,6 +4,28 @@
 #include"guloso.c"
 #include "leituraEEscrita.c"
 
+void printavetor(int *vetor, int tamanho){
+
+	int i;
+
+	for(i = 0; i < tamanho; i++)
+		printf("%d ", vetor[i]);
+
+		printf("\n");
+
+}//end printavetor
+
+int elevar(int base, int expoente){
+
+	int i, aux = base;
+
+	for(i = 1; i < expoente; i++)
+		aux *= base;
+
+	return aux;
+
+}//end elevar
+
 //Coverte valor decimal pra vetor int em binario
 //Recebe o inteiro a ser convertido, o vetor de inteiros que recebera os numeros, e o tamanho do vetor
 
@@ -172,6 +194,9 @@ int somaDePesos( ITEM * lista, int tamanho){
 void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int quantidadeDeItens){
 
 	int i;
+	int numeroDeCombinacoes = elevar(2, quantidadeDeItens);
+
+	printf("numero de combinações: %d", numeroDeCombinacoes);
 
 	//Ao definir esses valores iniciais e como se eu iniciasse a comparação com a combinação todos os item fora da cochila, ou 000..000
 
@@ -183,11 +208,14 @@ void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int q
 	memset(combinacaoAtual, 0, quantidadeDeItens * sizeof(int));
 	memset(maiorCombinacao, 0, quantidadeDeItens * sizeof(int));
 
-	for(i = 1; i < quantidadeDeItens; i++){
+	for(i = 1; i < numeroDeCombinacoes; i++){
 
 		//Converto 1 em base 10 pra binario
 
 		addParaBinario(i, combinacaoAtual, quantidadeDeItens);
+
+		printf("Conbinação %d:\n", i);
+		printavetor(combinacaoAtual, quantidadeDeItens);
 
 		//adiciono combinação a mochila
 
@@ -205,9 +233,17 @@ void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int q
 
 		if(capacidadeDaMochila-somaDePesosAtuais >= 0){
 
+			//printf("%d cabe \n", i);
+			//printavetor(combinacaoAtual, quantidadeDeItens);
+
 			//testa de a soma de valores atuais é maior que a anterior ou se caso iguais, peso menor que anterior
 
-			if( (somaDeValoresAtuais>somaDeValoresGuardados) || ((somaDeValoresAtuais==somaDeValoresGuardados)&&(somaDePesosAtuais<somaDePesosGuardados)) ){
+			if( (somaDeValoresAtuais>somaDeValoresGuardados)  || ((somaDeValoresAtuais==somaDeValoresGuardados)&&(somaDePesosAtuais<somaDePesosGuardados))){
+
+
+				//printf("%d cabe e é melhor\n", i);
+				//printavetor(combinacaoAtual, quantidadeDeItens);
+
 
 					//Guardo soma de pesos e valores dessa combinação
 
