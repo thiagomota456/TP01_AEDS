@@ -153,6 +153,9 @@ void copioMochila(int *mochilaDeDestino, int *mochilaDeOrigem, int tamanho){
 
 ********************************/
 
+//Soma valores de um vetor de ITEM
+//Recebe como parammetro um vetor de ITEMS e o tamanho dele
+
 int somaDeValores( ITEM * lista, int tamanho){
 
 	int i, aux = 0;
@@ -172,6 +175,9 @@ int somaDeValores( ITEM * lista, int tamanho){
 
 }//end somaDeValores
 
+//Soma pesos de um vetor de ITEM
+//Recebe como parametro um vetor de ITEMS e o tamanho deles
+
 int somaDePesos( ITEM * lista, int tamanho){
 
 	int i, aux = 0;
@@ -190,6 +196,9 @@ int somaDePesos( ITEM * lista, int tamanho){
 	return aux;
 
 }//end somaDeValores
+
+//Algoritimo de tentativa e erro pra encontrar a melhor combinação possivel quecaiba na mochila
+//Recebe como parametro um vetor do tipo ITEM, a o peso maximo que a mochila pode conter e q quantidade de itens
 
 void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int quantidadeDeItens){
 
@@ -265,6 +274,8 @@ void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int q
 	addMochila( lista, maiorCombinacao, quantidadeDeItens);
 	
 }//end tentativaEErro
+
+//Função principal
 
 int main(){
 
