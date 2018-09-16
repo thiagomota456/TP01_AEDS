@@ -1,19 +1,29 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "tipos.c"
-#include"guloso.c"
+#include"AddMochila.c"
 #include "leituraEEscrita.c"
+
+//Printa um vetor de inteiros no console
+//Recebe im vetor de inteiros e seu tamanho
 
 void printavetor(int *vetor, int tamanho){
 
 	int i;
 
+	//Para todos os numeros contidos no vetor, print
+
 	for(i = 0; i < tamanho; i++)
 		printf("%d ", vetor[i]);
+
+		//New line
 
 		printf("\n");
 
 }//end printavetor
+
+//Calcula uma base elevada a um expoente
+//Recebe como parametro um numero inteiro para bale e um número inteiro para o expoente
 
 int elevar(int base, int expoente){
 
@@ -27,7 +37,7 @@ int elevar(int base, int expoente){
 }//end elevar
 
 //Coverte valor decimal pra vetor int em binario
-//Recebe o inteiro a ser convertido, o vetor de inteiros que recebera os numeros, e o tamanho do vetor
+//Recebe o inteiro a ser convertido, o vetor de inteiros que recebera os numeros, e o tamanho do vetor como um numero inteiro
 
 void addParaBinario(int numero, int *vetor, int tamanhoDovetor){
 
@@ -58,31 +68,6 @@ void addParaBinario(int numero, int *vetor, int tamanhoDovetor){
 
 }//end addParaBinario
 
-
-/****************TESTE*****************
-*
-*	ITEM lista[5];
-*
-*	lista[0].naMochila = 0;
-*	lista[1].naMochila = 0;
-*	lista[2].naMochila = 0;
-*	lista[3].naMochila = 0;
-*	lista[4].naMochila = 0;
-*
-*	int mochila[ 5 ] = {1, 0, 0, 0, 1 };
-*
-*	printf("Antes: \n");
-*	printaItensNaMochila(lista,5);
-*
-*
-*	addMochila(lista, mochila, 5);
-*	
-*	printf("Depois: \n");
-*	printaItensNaMochila(lista,5);
-*
-*
-****************************************/
-
 //Pega vetor e add a lista de uteins, marcando quais estão e quais não estão na mochila
 //Recebe um vetor do tipo ITEM representando a lista de itens, um vetor do tipo int representando a mochila e um int reoresentado o tamanho de ambos os vetores  
 
@@ -100,26 +85,8 @@ void addMochila(ITEM *lista, int * mochila, int tamanho){
 
 }//end addMochila
 
-/********TESTE************
-	
-	int vetor1[6] = {1, 2, 3, 4, 6, 7};
-
-	int vetor2[6] = {7, 7, 7, 7, 7, 7};
-
-	copioMochila( vetor2, vetor1, 6);
-
-	int i = 0;
-
-	for(; i < 6; i++){
-
-		printf("%d ", vetor1[i]);
-
-	}//end for
-
-**************************/
-
 //Copio segunda mochila pra primeira mochila
-//Recebo vetor de origem int, vtor de destino int e tamanho deles, respectivamente
+//Recebo vetor de origem int, vtor de destino int e tamanho deles como int, respectivamente
 
 void copioMochila(int *mochilaDeDestino, int *mochilaDeOrigem, int tamanho){
 
@@ -137,24 +104,8 @@ void copioMochila(int *mochilaDeDestino, int *mochilaDeOrigem, int tamanho){
 
 }//end copioMochila
 
-/************TESTE********************
-	ITEM lista[5];
-
-	lista[0].naMochila = 0;
-	lista[1].naMochila = 1;
-	lista[2].naMochila = 0;
-	lista[3].naMochila = 1;
-	lista[4].naMochila = 0;
-
-	lista[1].valor = 10;
-	lista[3].valor = 389;
-
-	printf("%d\n", somaDeValores(lista, 5));
-
-********************************/
-
 //Soma valores de um vetor de ITEM
-//Recebe como parammetro um vetor de ITEMS e o tamanho dele
+//Recebe como parammetro um vetor de ITEMS e o tamanho dele como um número inteiro
 
 int somaDeValores( ITEM * lista, int tamanho){
 
@@ -176,7 +127,7 @@ int somaDeValores( ITEM * lista, int tamanho){
 }//end somaDeValores
 
 //Soma pesos de um vetor de ITEM
-//Recebe como parametro um vetor de ITEMS e o tamanho deles
+//Recebe como parametro um vetor de ITEMS e o tamanho deles como um número inteiro
 
 int somaDePesos( ITEM * lista, int tamanho){
 
@@ -198,7 +149,7 @@ int somaDePesos( ITEM * lista, int tamanho){
 }//end somaDeValores
 
 //Algoritimo de tentativa e erro pra encontrar a melhor combinação possivel quecaiba na mochila
-//Recebe como parametro um vetor do tipo ITEM, a o peso maximo que a mochila pode conter e q quantidade de itens
+//Recebe como parametro um vetor do tipo ITEM, um int representando o peso maximo que a mochila pode conter e tambem um int quantidade de itens do vetor
 
 void addItensAMochila_tentativaEErro(ITEM *lista, int capacidadeDaMochila, int quantidadeDeItens){
 

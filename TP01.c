@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "tipos.c"
-#include"guloso.c"
+#include"AddMochila.c"
 #include "leituraEEscrita.c"
 
 //Função Principal
