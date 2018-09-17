@@ -5,7 +5,9 @@ Matricula: 201722040394
 Descricao do programa: medição de tempo
 Data: 16/09/2018
 ************************************************/
-#include<stdio.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 #include<stdlib.h>
 #include<string.h>
 #include "tipos.c"
@@ -18,22 +20,14 @@ int main(int argc, char *argv[]){
 
 	// Variaveis relacionadas com a medicao do tempo:
 
-	struct timeval inicio, fim;
-
-	/*estrutura que armazena o tempo total que o programa gasta, relaciona-se com a funcao gettimeofday()*/
-
-	long totalmicroseg, totalseg;
-
-	//tempo total do programa
-	/* armazenam a diferenca entre o tempo inicial e o final, ou seja, o tempo total gasto pelo programa todo. */
-	//obtendo o tempo em que o programa comeca.
-
-	gettimeofday(&inicio, NULL);
-
-	/*********************************************************************/
+	int who = RUSAGE_SELF; //man: information shall be returned about resources used by the
+	//current process
+	struct rusage usage;
+	long utotalmicroseg, utotalseg; //tempo usuario: tempo que a CPU gasta executando o programa
+	long stotalmicroseg, stotalseg; //tempo sistema: tempo que a CPU gasta executando chamadas de sistemas para o programa
 	//coloque aqui o algoritmo
 
-	int CapacidadeDaMochila, tamanhoDalista;
+int CapacidadeDaMochila, tamanhoDalista;
 	ITEM * listaDeItens;
 
 	//Verifica se os parametros na linha de comado foram passados adequadamente
@@ -59,29 +53,26 @@ int main(int argc, char *argv[]){
 	saidaNoArquivo( listaDeItens, tamanhoDalista, arquivoDeSaida);
 
 
-	/**********************************************************************/
+	getrusage(who, &usage);
 
-	gettimeofday(&fim, NULL);
+	//tempo de usuário na CPU
 
-	//obtem tempo final do programa
+	utotalseg = usage.ru_utime.tv_sec;
+	utotalmicroseg = usage.ru_utime.tv_usec;
 
-	totalseg = fim.tv_sec - inicio.tv_sec;
+	//segundos
+	//microsegundos
+	//tempo de sistema na CPU
 
-	//diferenca em segundos
+	stotalseg = usage.ru_stime.tv_sec;
 
-	totalmicroseg = fim.tv_usec - inicio.tv_usec; //diferenca em microsegundos
+	//segundos
 
-	/*se a diferenca em microssegundos for negativa, os segundos terao que emprestar uma unidade; 1 microseg = 10E-6 s. */
-
-	if (totalmicroseg <0){
-
-		totalmicroseg += 1000000;
-		totalseg -= 1;
-	};
-
+	stotalmicroseg = usage.ru_stime.tv_usec; //microsegundos
 	printf ("\n");
 	printf ("***************************************************************\n");
-	printf ("Tempo total: %ld segundos e %ld microssegundos.\n", totalseg, totalmicroseg);
+	printf ("Tempo de usuario: %ld segundos e %ld microssegundos.\n", utotalseg, utotalmicroseg);
+	printf ("Tempo de sistema: %ld segundos e %ld microssegundos.\n", stotalseg, stotalmicroseg);
 	printf ("***************************************************************\n");
 	printf ("\n");
 

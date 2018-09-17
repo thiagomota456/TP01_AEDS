@@ -1,3 +1,10 @@
+/************************************************
+LAED1 - Trabalho Pratico 1
+Aluno: Thiago Soares Mota
+Matricula: 201722040394
+Descricao do programa: gera testes
+Data: 16/09/2018
+************************************************/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>

@@ -1,4 +1,10 @@
-
+/************************************************
+LAED1 - Trabalho Pratico 1
+Aluno: Thiago Soares Mota
+Matricula: 201722040394
+Descricao do programa: medição de tempo
+Data: 16/09/2018
+************************************************/
 
 /* Teste da medicao do tempo*/
 
@@ -17,7 +23,7 @@ int main(int argc, char *argv[]){
 	//obtendo o tempo em que o programa comeca.
 
 	gettimeofday(&inicio, NULL);
-
+	
 	//coloque aqui o algoritmo
 
 	gettimeofday(&fim, NULL);
